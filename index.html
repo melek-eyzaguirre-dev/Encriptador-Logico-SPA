@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Encriptador de texto - SPA para encriptar y desencriptar mensajes">
+    <title>Encriptador de Texto</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔐 Encriptador de Texto</h1>
+            <p class="subtitle">Encripta y desencripta tus mensajes secretos</p>
+        </header>
+
+        <main class="main-content">
+            <section class="input-section">
+                <div class="input-container">
+                    <textarea 
+                        id="inputText" 
+                        class="text-input" 
+                        placeholder="Ingresa el texto aquí..."
+                        rows="8"
+                    ></textarea>
+                    <div class="info-text">
+                        ⚠️ Solo letras minúsculas y sin acentos
+                    </div>
+                </div>
+
+                <div class="button-container">
+                    <button id="encryptBtn" class="btn btn-primary">
+                        🔒 Encriptar
+                    </button>
+                    <button id="decryptBtn" class="btn btn-secondary">
+                        🔓 Desencriptar
+                    </button>
+                </div>
+            </section>
+
+            <section class="output-section">
+                <div id="outputContainer" class="output-container">
+                    <div id="emptyState" class="empty-state">
+                        <div class="empty-icon">🔍</div>
+                        <h2>Ningún mensaje fue encontrado</h2>
+                        <p>Ingresa el texto que deseas encriptar o desencriptar.</p>
+                    </div>
+                    <div id="resultState" class="result-state hidden">
+                        <textarea 
+                            id="outputText" 
+                            class="text-output" 
+                            readonly
+                            rows="8"
+                        ></textarea>
+                        <button id="copyBtn" class="btn btn-copy">
+                            📋 Copiar
+                        </button>
+                        <div id="copyMessage" class="copy-message hidden">
+                            ✅ Texto copiado al portapapeles
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>© 2024 Encriptador de Texto - Proyecto de demostración de lógica y manipulación del DOM</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
