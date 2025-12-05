@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  encriptador-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: encriptador-logico-spa
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    networks:
+      - encriptador-network
+
+networks:
+  encriptador-network:
+    driver: bridge
