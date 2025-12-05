@@ -55,7 +55,8 @@ function encryptText(text) {
     
     // Reemplaza cada vocal por su equivalente encriptado
     for (const [key, value] of Object.entries(encryptionRules)) {
-        encrypted = encrypted.replaceAll(key, value);
+        // Usar split/join para compatibilidad con navegadores antiguos
+        encrypted = encrypted.split(key).join(value);
     }
     
     return encrypted;
@@ -72,7 +73,8 @@ function decryptText(text) {
     // Reemplaza cada secuencia encriptada por su vocal original
     // Es importante hacerlo en orden de mayor a menor longitud para evitar conflictos
     for (const [key, value] of Object.entries(decryptionRules)) {
-        decrypted = decrypted.replaceAll(key, value);
+        // Usar split/join para compatibilidad con navegadores antiguos
+        decrypted = decrypted.split(key).join(value);
     }
     
     return decrypted;
@@ -157,14 +159,33 @@ async function handleCopy() {
     const text = outputText.value;
     
     try {
-        // Intentar usar la API moderna del portapapeles
-        await navigator.clipboard.writeText(text);
-        showCopyMessage();
+        // Verificar si la API del portapapeles está disponible y en contexto seguro
+        if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(text);
+            showCopyMessage();
+        } else {
+            // Fallback para navegadores antiguos o contextos no seguros (HTTP)
+            copyTextFallback(text);
+        }
     } catch (err) {
-        // Fallback para navegadores que no soportan la API moderna
-        outputText.select();
+        // Si falla la API moderna, usar el fallback
+        copyTextFallback(text);
+    }
+}
+
+/**
+ * Método de fallback para copiar texto al portapapeles
+ * @param {string} text - Texto a copiar
+ */
+function copyTextFallback(text) {
+    outputText.select();
+    outputText.setSelectionRange(0, 99999); // Para dispositivos móviles
+    
+    try {
         document.execCommand('copy');
         showCopyMessage();
+    } catch (err) {
+        showAlert('⚠️ No se pudo copiar el texto. Por favor, cópialo manualmente.');
     }
 }
 
