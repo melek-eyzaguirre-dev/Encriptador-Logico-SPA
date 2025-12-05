@@ -33,7 +33,7 @@ This web application allows you to encrypt and decrypt text messages using a vow
 ### Example
 
 - **Original text:** `hello world`
-- **Encrypted text:** `henterllober woberldrld`
+- **Encrypted text:** `henterllober woberrld`
 
 ## 🏠 Local Development
 
@@ -317,10 +317,10 @@ You can test the encryption logic by opening the browser console:
 
 ```javascript
 // Encryption test
-console.log(encryptText("hello world"));  // "henterllober woberldrld"
+console.log(encryptText("hello world"));  // "henterllober woberrld"
 
 // Decryption test
-console.log(decryptText("henterllober woberldrld"));  // "hello world"
+console.log(decryptText("henterllober woberrld"));  // "hello world"
 ```
 
 ## 🤝 Contributions
